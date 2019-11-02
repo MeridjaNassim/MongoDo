@@ -1,0 +1,41 @@
+<% include ../views/partials/header %>
+<div class="row" style="margin-top : 1em">
+    <div class="col-md-6">
+        <form method="POST" action="/todo/add">
+            <div class="form-group">
+                <label for="text">Todo Name</label>
+                <input class="form-control" type="text" name="text" placeholder="Add todo" required />
+            </div>
+            <div class="form-group">
+                <label for="body">Todo Body</label>
+                <textarea class="form-control" name="body" id="" cols="30" rows="10" placeholder="Add body for todo"
+                    required></textarea>
+            </div>
+            <button class="btn submit-btn btn-block" type="submit">Submit Todo</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2 class="text-center">Your Todos (<%=todos.length %>)</h2>
+        <ul>
+            <% todos.forEach((todo)=>{ %>
+            <li>
+                <div class="card">
+                    <h5 class="card-header"><%=todo.text %></h5>
+                    <div class="card-body">
+                        <p class="card-text"><%=todo.body %></p>
+                        <a href="/todo/edit/<%=todo._id %>" class="btn btn-dark"> Edit <i
+                                class="fas fa-edit"></i></i></a>
+                        <a data-id="<%=todo._id %>" href="#" class="delete-todo btn btn-danger">Delete <i
+                                class="fas fa-trash-alt"></i></a>
+                        <a data-id="<%=todo._id %>" href="#" class="complete-todo btn btn-success">Complete <i
+                                class="far fa-check-circle"></i></a>
+                    </div>
+                </div>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+</div>
+
+
+<% include ../views/partials/footer %>
